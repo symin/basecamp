@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.board.boardProject.dao.BbsMapper">
+ 
+    <resultMap id="bbsMap" type="com.board.boardProject.dao.BbsVo">
+        <id     property="idx"            column="idx" />
+        <result property="email"      column="email" />
+        <result property="pwd"        column="pwd" />
+        <result property="content"        column="content" />
+        <result property="datetime"   column="datetime" />
+        <result property="updatetime"   column="updatetime" />
+    </resultMap>
+ 
+    <select id="select" resultMap="bbsMap">
+        SELECT  * FROM bbs
+    </select>
+ 
+    <select id="selectOne" resultMap="bbsMap">
+        SELECT  * FROM bbs WHERE idx = #{idx}
+    </select>
+ 
+    <insert id="insert">
+         INSERT INTO bbs (email,pwd,content,datetime,updatetime) 
+            VALUES (#{email},#{pwd},#{content},now(),now())    
+    </insert>
+ 
+    <update id="update">
+         UPDATE bbs SET
+              email = #{email},
+              pwd = #{pwd},
+              content = #{content},
+              updatetime = now()
+         WHERE idx = #{idx} LIMIT 1
+    </update>
+ 
+    <delete id="delete">
+         DELETE FROM bbs WHERE idx = #{idx}
+    </delete>
+ 
+</mapper>
+
