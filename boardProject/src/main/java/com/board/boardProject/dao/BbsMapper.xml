@@ -15,7 +15,7 @@
     </resultMap>
  
     <select id="select" resultMap="bbsMap">
-        SELECT  * FROM bbs
+        SELECT  * FROM bbs ORDER BY updatetime DESC
     </select>
  
     <select id="selectOne" resultMap="bbsMap">
