@@ -17,22 +17,22 @@
 
 </head>
 <body>
+<h1>방명록 세부 조회</h1>
 
 	<form id="form" name="form" method="post" action="./delete">
 		<input type="hidden" id="idx" name="idx" value="${object.idx}" />
 	</form>
 	
-	<p>${object.email}</p>
-	<div>${object.content}</div>
+	<p>이메일 : ${object.email}</p>
+	<div>본문  : ${object.content}</div>
 	<div>
 		<p>등록일 : ${object.datetime}</p>
 		<p>수정일 : ${object.updatetime}</p>
 	</div>
 	<div>
-		<input type="button" value="삭제" onclick="del()"> <input
-			type="button" value="수정"
-			onclick="location.href='./write?idx=${object.idx}' "> <input
-			type="button" value="목록" onclick="location.href='./' ">
+		<input type="button" value="삭제" onclick="del()"> 
+		<input type="button" value="수정" onclick="location.href='./write?idx=${object.idx}' "> 
+		<input type="button" value="목록" onclick="location.href='./' ">
 	</div>
 
 </body>

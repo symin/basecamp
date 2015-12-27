@@ -1,8 +1,5 @@
 package com.board.boardProject;
 
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -57,7 +54,7 @@ public class ViewController {
     /**
      * <pre>
      * 		게시글 보기 화면으로 이동 
-     * 		PathVariable index를 url 형식으로 입력받음 
+     * 			-PathVariable index를 url 형식으로 입력받음 
      * </pre>
     
      * @Author : syMin
@@ -72,8 +69,15 @@ public class ViewController {
     }
     
 
+    /**
+     * <pre>
+     * 		게시판 쓰기 화면으로 이동 
+     * 			- 화면 index는 0으로 설정 
+     * </pre>
     
- // 게시판 쓰기
+     * @Author : syMin
+     * @Date : 2015. 12. 26.
+     */
     @RequestMapping(value = "/write", method = RequestMethod.GET)
     public String dispBbsWrite(@RequestParam(value="idx", 
                                     defaultValue="0") int idx, Model model) {
@@ -83,30 +87,42 @@ public class ViewController {
         }
         return "bbs.write";
     }
+    
  
+    /**
+     * <pre>
+     * 		게시글 추가 및 수정 화면으로 이동 
+     * 			- idx가 null이거나 0일 경우 insert 작업 수행
+     * 			- idx가 0 이상일 경우 수정 update 작업 수행 
+     * </pre>
+    
+     * @Author : syMin
+     * @Date : 2015. 12. 26.
+     */
     @RequestMapping(value = "/write_ok", method = RequestMethod.POST)
     public String procBbsWrite(@ModelAttribute("bbsVo") BbsVo bbsVo, 
                                     RedirectAttributes redirectAttributes) {
         Integer idx = bbsVo.getIdx();
-        
-        /*long time = System.currentTimeMillis(); 
-		SimpleDateFormat dayTime = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
-		String str = dayTime.format(new Date(time));
-		
-        bbsVo.setDatetime(str);*/
 
-        
         if (idx == null || idx == 0) {
             this.bbsDao.insert(bbsVo);
-            redirectAttributes.addFlashAttribute("message", "추가되었습니다.");
+            redirectAttributes.addFlashAttribute("message", "추가");
             return "redirect:/";
         } else {
             this.bbsDao.update(bbsVo);
-            redirectAttributes.addFlashAttribute("message", "수정되었습니다.");
-            return "redirect:/write?idx=" + idx;
+            redirectAttributes.addFlashAttribute("message", "수정");
+            return "redirect:/";
         }
     }
  
+    /**
+     * <pre>
+     * 		해당 idx의 data를 삭제 
+     * </pre>
+    
+     * @Author : syMin
+     * @Date : 2015. 12. 26.
+     */
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public String procBbsDelete(@RequestParam(value = "idx", required = false) int idx) {
         this.bbsDao.delete(idx);

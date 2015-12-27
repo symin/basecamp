@@ -6,11 +6,32 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
 <title>방명록 쓰기 </title>
+
+<script>	
+	function emailCheck() {
+		var email = $("#email").val();
+		var regex=/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
+		
+		if(regex.test(email) === false) {  
+		    alert("잘못된 이메일 형식입니다.");
+		    $("#email").focus();
+		    return false;  
+		}
+		else{
+			$('form').submit();
+		}
+	
+	}
+</script>
+
 </head>
 <body>
+<h1>방명록 목록</h1>
 
-	<h1>${message}</h1>
     <form id="form" method="post" action="./write_ok">
         <input type="hidden" name="idx" id="idx" value="${object.idx}" />
         <div>
@@ -28,7 +49,7 @@
             </textarea>
         </div>
         <div>
-            <input type="submit" value="저장" />
+            <input type="button" value="저장" onclick="emailCheck()"/>
             <input type="button" value="목록" onclick="location.href='./' ">
         </div>                
     </form>

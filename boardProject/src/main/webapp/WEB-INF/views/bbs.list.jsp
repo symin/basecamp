@@ -9,13 +9,13 @@
 <title>방명록 목록</title>
 </head>
 <body>
-
+<h1>방명록 목록</h1>
 	<table border="1">
 		<colgroup>
-			<col width="60">
-			<col>
+			<col width="50">
+			<col width="200">
 			<col width="115">
-			<col width="85">
+			<col width="115">
 		</colgroup>
 		<thead>
 			<tr>
@@ -37,6 +37,7 @@
             </c:forEach>
 		</tbody>
 	</table>
+	<br/>
 	<input type="button" value="글쓰기" onclick="location.href='./write' ">
 
 
