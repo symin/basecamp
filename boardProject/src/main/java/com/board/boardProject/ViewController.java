@@ -116,9 +116,16 @@ public class ViewController {
                 return "redirect:/";
             } 
         	else {
-                this.bbsDao.update(bbsVo);
-                redirectAttributes.addFlashAttribute("message", "수정되었습니다.");
-                return "redirect:/";
+        		if(pwCheck(idx,bbsVo.getPwd())){
+        			this.bbsDao.update(bbsVo);
+                    redirectAttributes.addFlashAttribute("message", "수정되었습니다.");
+                    return "redirect:/";
+        		}
+        		else{
+        			redirectAttributes.addFlashAttribute("message", "비밀번호 불일치로 수정할 수 없습니다.");
+                    return "redirect:/write?idx=" + idx;
+        		}
+                
             }
         }
         else{
@@ -131,10 +138,6 @@ public class ViewController {
                 return "redirect:/write?idx=" + idx;
             }
         }
-        
-        
-        
-
         
     }
  
@@ -150,6 +153,29 @@ public class ViewController {
     public String procBbsDelete(@RequestParam(value = "idx", required = false) int idx) {
         this.bbsDao.delete(idx);
         return "redirect:/";
+    }
+    
+    
+    /**
+     * <pre>
+     * 		비밀번호 일치 여부 확인 
+     * 			- true : 비밀번호 일치
+     * 			- false : 비밀번호 오류 
+     * </pre>
+    
+     * @Author : syMin
+     * @Date : 2015. 12. 29.
+     */
+    public boolean pwCheck(int idx, String pw){
+    	BbsVo bbsVo = this.bbsDao.getSelectOne(idx);
+    	
+    	if(bbsVo.getPwd().equals(pw)){
+    		return true;
+    	}
+    	else{
+    		return false;
+    	}
+    		
     }
 
 

@@ -47,7 +47,7 @@
         </div>
         <div>
             <span>비밀번호</span>
-            <input type="text" id="pwd" name="pwd" value="${object.pwd}" />
+            <input type="password" id="pwd" name="pwd" value="" />
         </div>
         <div>
             <span>본문</span>
