@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.board.boardProject.dao.BbsDao;
 import com.board.boardProject.dao.BbsVo;
@@ -99,18 +100,42 @@ public class ViewController {
      * @Date : 2015. 12. 26.
      */
     @RequestMapping(value = "/write_ok", method = RequestMethod.POST)
-    public String procBbsWrite(@ModelAttribute("bbsVo") BbsVo bbsVo) {
+    public String procBbsWrite(@ModelAttribute("bbsVo") BbsVo bbsVo, RedirectAttributes redirectAttributes) {
         Integer idx = bbsVo.getIdx();
+        String hex = bbsVo.getEmail();
         
-        System.out.println("write_ok : " + bbsVo.getContent());
+        boolean flag = true;
         
-        if (idx == null || idx == 0) {
-            this.bbsDao.insert(bbsVo);
-            return "redirect:/";
-        } else {
-            this.bbsDao.update(bbsVo);
-            return "redirect:/";
+        EmailValidator emailValidator = new EmailValidator();
+        flag = emailValidator.validate(hex);
+        
+        if(flag){
+        	if (idx == null || idx == 0) {
+                this.bbsDao.insert(bbsVo);
+                redirectAttributes.addFlashAttribute("message", "추가되었습니다.");
+                return "redirect:/";
+            } 
+        	else {
+                this.bbsDao.update(bbsVo);
+                redirectAttributes.addFlashAttribute("message", "수정되었습니다.");
+                return "redirect:/";
+            }
         }
+        else{
+        	if (idx == null || idx == 0) {
+                redirectAttributes.addFlashAttribute("message", "잘못된 이메일 형식입니다.");
+                return "redirect:/write";
+            } 
+        	else {
+                redirectAttributes.addFlashAttribute("message", "잘못된 이메일 형식입니다.");
+                return "redirect:/write?idx=" + idx;
+            }
+        }
+        
+        
+        
+
+        
     }
  
     /**
