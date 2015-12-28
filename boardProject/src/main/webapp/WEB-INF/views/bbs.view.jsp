@@ -1,38 +1,38 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>¹æ¸í·Ï ¼¼ºÎ Á¶È¸</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ë°©ëª…ë¡ ì„¸ë¶€ ì¡°íšŒ</title>
 
 <script>
 	function del() {
-		if (confirm("»èÁ¦ÇÏ½Ã°Ú½À´Ï±î?"))
+		if (confirm("ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?"))
 			document.form.submit();
 	}
 </script>
 
 </head>
 <body>
-<h1>¹æ¸í·Ï ¼¼ºÎ Á¶È¸</h1>
+<h1>ë°©ëª…ë¡ ì„¸ë¶€ ì¡°íšŒ</h1>
 
 	<form id="form" name="form" method="post" action="./delete">
 		<input type="hidden" id="idx" name="idx" value="${object.idx}" />
 	</form>
 	
-	<p>ÀÌ¸ŞÀÏ : ${object.email}</p>
-	<div>º»¹®  : ${object.content}</div>
+	<p>ì´ë©”ì¼ : ${object.email}</p>
+	<div>ë³¸ë¬¸  : ${object.content}</div>
 	<div>
-		<p>µî·ÏÀÏ : ${object.datetime}</p>
-		<p>¼öÁ¤ÀÏ : ${object.updatetime}</p>
+		<p>ë“±ë¡ì¼ : ${object.datetime}</p>
+		<p>ìˆ˜ì •ì¼ : ${object.updatetime}</p>
 	</div>
 	<div>
-		<input type="button" value="»èÁ¦" onclick="del()"> 
-		<input type="button" value="¼öÁ¤" onclick="location.href='./write?idx=${object.idx}' "> 
-		<input type="button" value="¸ñ·Ï" onclick="location.href='./' ">
+		<input type="button" value="ì‚­ì œ" onclick="del()"> 
+		<input type="button" value="ìˆ˜ì •" onclick="location.href='./write?idx=${object.idx}' "> 
+		<input type="button" value="ëª©ë¡" onclick="location.href='./' ">
 	</div>
 
 </body>

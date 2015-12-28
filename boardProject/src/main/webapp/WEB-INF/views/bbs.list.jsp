@@ -1,15 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>¹æ¸í·Ï ¸ñ·Ï</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ë°©ëª…ë¡ ëª©ë¡</title>
 </head>
 <body>
-<h1>¹æ¸í·Ï ¸ñ·Ï</h1>
+<h1>ë°©ëª…ë¡ ëª©ë¡</h1>
 	<table border="1">
 		<colgroup>
 			<col width="50">
@@ -19,10 +19,10 @@
 		</colgroup>
 		<thead>
 			<tr>
-				<th scope="col">¹øÈ£</th>
-				<th scope="col">ÀÌ¸ÞÀÏ</th>
-				<th scope="col">µî·ÏÀÏ</th>
-				<th scope="col">¼öÁ¤ÀÏ</th>
+				<th scope="col">ë²ˆí˜¸</th>
+				<th scope="col">ì´ë©”ì¼</th>
+				<th scope="col">ë“±ë¡ì¼</th>
+				<th scope="col">ìˆ˜ì •ì¼</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -38,7 +38,7 @@
 		</tbody>
 	</table>
 	<br/>
-	<input type="button" value="±Û¾²±â" onclick="location.href='./write' ">
+	<input type="button" value="ê¸€ì“°ê¸°" onclick="location.href='./write' ">
 
 
 </body>
